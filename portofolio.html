@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Portofolio Afiq Atsal Adami</title>
+    
+    <style>
+        /* CSS (Gaya Tampilan) */
+        
+        :root {
+            --bg-color: #020510;
+            --primary-color: #007BFF;
+            --secondary-color: #4da8ff;
+            --text-color: #f0f0f8;
+            --text-muted: #a0a0b0;
+            --card-bg: rgba(2, 10, 30, 0.7);
+            --card-bg-solid: #030818; 
+            --border-color: rgba(0, 123, 255, 0.2);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* == GAYA PRELOADER (V6) == */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: var(--bg-color); z-index: 10000; display: flex;
+            justify-content: center; align-items: center;
+            transition: opacity 0.5s ease-out, visibility 0s 0.5s;
+            opacity: 1; visibility: visible;
+        }
+        #preloader.loaded { opacity: 0; visibility: hidden; }
+        .loader-container {
+            width: 150px; display: flex; flex-direction: column; align-items: center;
+        }
+        .loader-text {
+            color: var(--primary-color); font-size: 0.9rem; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase; margin: 10px 0;
+        }
+        .loader-bar { width: 100%; height: 4px; background-color: var(--primary-color); }
+        .top-bar { transform-origin: left; animation: wipe-lr 1.5s infinite ease-in-out; }
+        .bottom-bar { transform-origin: right; animation: wipe-rl 1.5s infinite ease-in-out; }
+        @keyframes wipe-lr { 0%, 100% { transform: scaleX(0); } 50% { transform: scaleX(1); } }
+        @keyframes wipe-rl { 0%, 100% { transform: scaleX(0); } 50% { transform: scaleX(1); } }
+        /* ============================ */
+        
+        #constellation-bg {
+            position: fixed; top: 0; left: 0; width: 100%;
+            height: 100%; z-index: -1;
+        }
+        
+        /* (V19) Kursor Lingkaran Dihapus */
+        
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 1.5rem 5%; z-index: 1000;
+            background: rgba(2, 5, 16, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 123, 255, 0.1);
+        }
+        
+        nav {
+            display: flex; justify-content: center;
+            align-items: center; gap: 2.5rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem; font-weight: 700; color: var(--text-color);
+            text-decoration: none; flex-shrink: 0;
+        }
+        
+        .logo span { color: var(--primary-color); }
+        
+        .nav-links { list-style: none; display: flex; gap: 2rem; }
+        
+        .nav-links a {
+            text-decoration: none; color: var(--text-color);
+            font-weight: 500; font-size: 0.95rem;
+            transition: color 0.3s ease; white-space: nowrap;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a.active,
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-links a.active::after,
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        @media (max-width: 900px) {
+            nav { flex-direction: column; gap: 1rem; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 1rem 1.5rem; }
+        }
+        
+        main { width: 100%; }
+        
+        section {
+            min-height: 100vh;
+            padding: 8rem 5% 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .section-content-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        #home {
+            text-align: center; align-items: center;
+            position: relative;
+        }
+        
+        #home h1 {
+            font-size: 4rem; font-weight: 700;
+            margin-bottom: 1rem; line-height: 1.2;
+        }
+        
+        #home h1 span {
+            color: var(--primary-color);
+        }
+        
+        #home .subtitle {
+            font-size: 1.25rem; color: var(--text-muted);
+            margin-bottom: 2.5rem; max-width: 600px;
+            min-height: 3.2em; 
+        }
+
+        #typing-role { color: var(--primary-color); font-weight: 600; }
+        
+        #typing-role::after {
+            content: '|'; color: var(--text-muted);
+            animation: blink 0.7s infinite;
+        }
+        
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        
+        .cta-buttons { display: flex; gap: 1rem; justify-content: center; }
+        
+        .btn {
+            display: inline-block; padding: 0.75rem 1.5rem;
+            border-radius: 5px; text-decoration: none;
+            font-weight: 600; transition: all 0.3s ease;
+        }
+        
+        .btn-primary { background-color: var(--primary-color); color: #fff; }
+        .btn-primary:hover { background-color: var(--secondary-color); }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        .btn-secondary:hover { background-color: var(--primary-color); color: #fff; }
+        
+        .section-title {
+            font-size: 2.5rem; color: var(--primary-color);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .card {
+            background: var(--card-bg-solid);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.75rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card:hover,
+        .stat-box:hover,
+        .experience-item:hover,
+        .about-content:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.4);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .card p, .card li {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        p.card-issuer {
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .card-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card-credential {
+            display: inline-block;
+            background-color: var(--card-bg-solid);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .card-credential:hover {
+            border-color: var(--secondary-color);
+            color: var(--text-color);
+            transform: translateY(-2px);
+        }
+        
+        .card-description {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-tag {
+            display: inline-block;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--secondary-color);
+            font-size: 0.8rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .card-tag:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+            transform: translateY(-2px);
+            border-color: var(--secondary-color);
+        }
+
+        .about-content {
+            margin-bottom: 3rem;
+            background: var(--card-bg-solid);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 1.75rem;
+            transition: all 0.3s ease;
+        }
+        
+        .about-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+        }
+        .stat-box {
+            background: var(--card-bg-solid);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-box h3 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+        }
+        .stat-box p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+        
+        .experience-item {
+            background: var(--card-bg-solid);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .exp-header h3 {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            margin: 0;
+        }
+        .exp-date {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        p.exp-company {
+            font-style: italic;
+            color: var(--text-color);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .exp-details {
+            list-style: none;
+            padding-left: 1.5rem;
+        }
+        .exp-details li {
+            position: relative;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+        .exp-details li::before {
+            content: '▶';
+            color: var(--primary-color);
+            position: absolute;
+            left: -1.5rem;
+            font-size: 0.8rem;
+        }
+        
+        .project-description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .skills-grid {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+        .skills-list {
+            list-style: none;
+            padding: 0;
+        }
+        .skills-list li {
+            background: var(--card-bg-solid);
+            padding: 0.5rem 0.75rem;
+            margin-bottom: 0.5rem;
+            border-radius: 4px;
+            border-left: 2px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .skills-list li:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+            transform: translateX(5px);
+        }
+        
+        .btn-card {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .btn-card:hover {
+            color: var(--secondary-color);
+        }
+        
+        .contact-intro {
+            text-align: center;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+        }
+        
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        .btn-contact {
+            background: var(--card-bg-solid);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            flex-basis: 300px; 
+            flex-grow: 1;
+            max-width: 400px;
+        }
+        
+        .btn-contact:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.4);
+        }
+        
+        .btn-contact svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            margin-right: 10px;
+        }
+        
+        .scroll-down-container {
+            position: absolute; bottom: 3rem;
+            left: 50%; transform: translateX(-50%);
+        }
+        .mouse-outline {
+            width: 28px; height: 50px;
+            border: 2px solid var(--primary-color);
+            border-radius: 14px; position: relative;
+        }
+        .mouse-scroller {
+            width: 4px; height: 8px;
+            background-color: var(--primary-color);
+            border-radius: 2px; position: absolute;
+            left: 50%; top: 8px; transform: translateX(-50%);
+            animation: scroll-anim 2s infinite;
+        }
+        @keyframes scroll-anim {
+            0% { opacity: 0; top: 8px; }
+            50% { opacity: 1; }
+            100% { opacity: 0; top: 24px; }
+        }
+        
+        #scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--primary-color);
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-size: 1.5rem;
+            text-decoration: none;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, background-color 0.3s;
+        }
+        #scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        #scroll-to-top:hover {
+            background-color: var(--secondary-color);
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div id="preloader">
+        <div class="loader-container">
+            <div class="loader-bar top-bar"></div>
+            <span class="loader-text">LOADING...</span>
+            <div class="loader-bar bottom-bar"></div>
+        </div>
+    </div>
+    <canvas id="constellation-bg"></canvas>
+    
+    <header>
+        <nav>
+            <a href="#home" class="logo">AA<span>A</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#awards">Awards</a></li>
+                <li><a href="#organizations">Organizations</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        
+        <section id="home">
+            
+            <h1>Afiq Atsal <span>Adami</span></h1>
+            
+            <p class="subtitle">
+                <span id="typing-role"></span>
+                <br>
+                <span id="subtitle-desc">
+                <br>
+                    Transforming complex data into meaningful insights to support strategic and evidence-based decision making. With an actuarial foundation, dashboard development experience, and economic trend analysis expertise, I help organizations understand patterns, anticipate changes, and act with confidence.
+                </span>
+            </p>
+            
+            <div class="cta-buttons">
+                <a href="link_ke_resume.pdf" class="btn btn-primary" download>Download Resume</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                <a href="https://linkedin.com/in/afiqatsaladami" class="btn btn-secondary" target="_blank">LinkedIn</a>
+            </div>
+            
+            <div class="scroll-down-container">
+                <div class="mouse-outline">
+                    <div class="mouse-scroller"></div>
+                </div>
+            </div>
+            
+        </section>
+        
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            
+            <div class="section-content-wrapper">
+                
+                <div class="about-content experience-item">
+                    <p>
+                        I am a Data Analyst with an Actuarial Science background, experienced in data exploration, statistical analysis, and dashboard development to support clear, data-driven decision making. I hold the BNSP Data Analyst Certification and Advanced Excel certification, and have built interactive dashboards on inflation trends, commodity prices, and regional sales performance to help stakeholders quickly interpret patterns and key drivers. With strong analytical rigor and the ability to translate complex findings into clear, actionable insights, I am well aligned with roles in Actuarial Analysis, Risk Analysis, and Actuarial Product/Pricing. I aim to ensure data is not only processed, but meaningfully understood and applied to strategic decisions.
+                    </p>
+                </div>
+                
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <h3>3.71</h3>
+                        <p>GPA</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>5</h3>
+                        <p>Certifications</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>3</h3>
+                        <p>Projects</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>1+ Year</h3>
+                        <p>Experience</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="experience">
+            <h2 class="section-title">Experience</h2>
+            
+            <div class="section-content-wrapper">
+                
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <h3>Regional Policy Formulation Group Intern</h3>
+                        <span class="exp-date">Apr 2025 - Aug 2025</span>
+                    </div>
+                    <p class="exp-company">Central Bank of Indonesia</p>
+                    <ul class="exp-details">
+                        <li>Conducted regional economic surveillance across Sulawesi, Maluku, and Papua, focusing on inflation drivers and commodity pricing.</li>
+                        <li>Contributed to the KETANI – AI-Based Planting Calendar by integrating commodity price forecasts and rainfall projections.</li>
+                        <li>Processed and visualized macroeconomic indicators to identify seasonal price patterns and market sensitivities.</li>
+                        <li>Prepared analytical reports, dashboards, and policy briefs for coordination meetings.</li>
+                        <li>Developed interactive dashboards enabling real-time monitoring and supporting faster policy response.</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <h3>Sales Operation And Marketing Intern</h3>
+                        <span class="exp-date">Jan 2024 - Jun 2024</span>
+                    </div>
+                    <p class="exp-company">PT. HADJI KALLA</p>
+                    <ul class="exp-details">
+                        <li>Analyzed market share across South, West, and Southeast Sulawesi using vehicle registration datasets.</li>
+                        <li>Monitored branch sales performance against monthly targets and provided performance insights.</li>
+                        <li>Evaluated monthly vehicle stock and contributed to optimized allocation planning.</li>
+                        <li>Maintained and updated TAM monitoring dashboards for sales transfers from Astra to Kalla Toyota.</li>
+                        <li>Assessed customer purchase data from mall activation events to validate promotional eligibility.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="certifications">
+            <h2 class="section-title">Licenses & Certifications</h2>
+            
+            <div class="section-content-wrapper">
+                <div class="grid-container">
+                    
+                    <div class="card">
+                        <h3>Belajarlagi Certified Data Analyst</h3>
+                        <p class="card-issuer">Belajarlagi</p>
+                        <p class="card-date">Issued Oct 2025</p>
+                        <p class="card-description">Skills: Economic Data Analysis, Spreadsheets, Looker Studio, Pivot Tables.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>National Professional Certification Agency Certified Data Analyst</h3>
+                        <p class="card-issuer">National Professional Certification Agency</p>
+                        <p class="card-date">Issued Oct 2025</p>
+                        <p class="card-description">Skills: Economic Data Collect, Data Cleansing, Data Analysis, Spreadsheets, Looker Studio, Pivot Tables.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Fundamentals of Data Analysis in Excel</h3>
+                        <p class="card-issuer">Corporate Finance Institute® (CFI)</p>
+                        <p class="card-date">Issued Oct 2025</p>
+                        <span class="card-credential">Credential ID: PDMGXZLO36HH</span>
+                        <p class="card-description">Skills: Microsoft Excel, Data Visualization.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Microsoft Excel VBA and Macros</h3>
+                        <p class="card-issuer">Coursera Course Certificates</p>
+                        <p class="card-date">Issued Oct 2025</p>
+                        <span class="card-credential">Credential ID: CBL7IQCTZQ6R</span>
+                        <p class="card-description">Skills: VBA Excel</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <h2 class="section-title">Skills</h2>
+            
+            <div class="section-content-wrapper">
+                <div class="grid-container skills-grid">
+                    
+                    <div class="card">
+                        <h3>Programming Languages</h3>
+                        <ul class="skills-list">
+                            <li>Python</li>
+                            <li>SQL</li>
+                            <li>R</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Data Analysis</h3>
+                        <ul class="skills-list">
+                            <li>Data Cleaning & Preparation</li>
+                            <li>Exploratory Data Analysis (EDA)</li>
+                            <li>Statistical Analysis & Hypothesis Testing</li>
+                            <li>SQL & Database Querying</li>
+                            <li>Data Reporting & Visualization</li>
+                            <li>Storytelling</li>
+                            <li>Excel and Spreadsheet</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Data Visualization</h3>
+                        <ul class="skills-list">
+                            <li>Looker Studio</li>
+                            <li>Power BI</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Machine Learning</h3>
+                        <ul class="skills-list">
+                            <li>Data Preprocessing & Feature Engineering</li>
+                            <li>Supervised & Unsupervised Learning</li>
+                            <li>Model Development & Evaluation</li>
+                            <li>Machine Learning Algorithms</li>
+                            <li>Programming & Scripting</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <h2 class="section-title">Projects</h2>
+            
+            <div class="section-content-wrapper">
+                
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <h3>Analisis Akurasi Forecasting Volume Penjualan Kendaraan PT. Kalla Toyota</h3>
+                        <span class="exp-date">Sep 2025</span>
+                    </div>
+                    <p class="exp-company">A data-driven forecasting analysis aimed at measuring and improving sales volume prediction accuracy for PT. Kalla Toyota</p>
+                    
+                    <p class="project-description">
+                        I developed a Hybrid SARIMA-LSTM model to forecast vehicle sales volumes at PT. Kalla Toyota, aiming to enhance prediction accuracy in a dynamic and competitive market. This hybrid approach allows me to capture seasonal patterns, long term trends, and complex non-linear behaviors that single method forecasting often fails to address. I also evaluated the model’s performance to ensure it delivers consistent and reliable forecasting results. The 30-day forecast produced from this model is intended to support strategic decision-making in inventory management, production planning, and data-driven business operations.
+                    </p>
+                    
+                    <div class="card-tags">
+                        <span class="card-tag">Python</span>
+                        <span class="card-tag">Google Collab</span>
+                        <span class="card-tag">Excel</span>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <h3>KETANI-AI BASED Calendar</h3>
+                        <span class="exp-date">Aug 2025</span>
+                    </div>
+                    <p class="exp-company">A collaborative research and data analytics project developed in partnership with Central Bank of Indonesia.</p>
+                    
+                    <p class="project-description">
+                        I developed KETANI, an AI-powered planting calendar created in collaboration with Bank Indonesia, designed to support farmers and policymakers in South Sulawesi through data-driven decision-making. The platform features an interactive dashboard that generates forecasts for commodity prices, rainfall, and planting areas, enabling users to identify the optimal crop, planting time, and location. Accessible on both desktop and mobile, KETANI offers a clean and intuitive interface that simplifies complex data into practical guidance. By integrating predictive analytics into everyday agricultural planning, KETANI helps farmers work more efficiently, increase yields, and improve income through smarter, insight driven cultivation strategies.
+                    </p>
+                    
+                    <div class="card-tags">
+                        <span class="card-tag">Python</span>
+                        <span class="card-tag">Google Collab</span>
+                        <span class="card-tag">Excel</span>
+                        <span class="card-tag">Power BI</span>
+                        <span class="card-tag">Spreadsheet</span>
+                    </div>
+                    <a href="http://tinyurl.com/appketani" class="btn-card" target="_blank" rel="noopener noreferrer">View App →</a>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <h3>Provincial CPI Dashboard: Indonesia’s Inflation Trends in Q1 2024</h3>
+                        <span class="exp-date">Oct 2025</span>
+                    </div>
+                    <p class="exp-company">Data Analyst Training by Belajarlagi x Bank Indonesia KPw Sulawesi Selatan</p>
+                    
+                    <p class="project-description">
+                        I developed an interactive dashboard analyzing provincial inflation across Indonesia in Q1 2024 as part of the Data Analyst Training by Belajarlagi x Bank Indonesia KPw Sulawesi Selatan, with the goal of transforming economic data into a clear and meaningful narrative that explains how and why inflation varies across regions. The dashboard highlights monthly inflation trends, spatial differences among provinces, key expenditure categories driving price movements, and notable sectoral shifts reflected in local CPI changes. Through this project, I strengthened my ability to integrate analytical rigor with economic interpretation, ensuring that every visualization communicates insight rather than simply presenting figures. This experience reinforced that data analytics is most valuable when numbers are connected to real-world context to support more informed and strategic decision-making.
+                    </p>
+                    
+                    <div class="card-tags">
+                        <span class="card-tag">Looker Studio</span>
+                        <span class="card-tag">Spreadsheet</span>
+                    </div>
+                    <a href="https://bit.ly/47vMSMh" class="btn-card" target="_blank" rel="noopener noreferrer">View Dashboard →</a>
+                </div>
+
+            </div>
+        </section>
+        
+        <section id="awards">
+            <h2 class="section-title">Awards</h2>
+            
+            <div class="section-content-wrapper">
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <h3>ENTRANCE 2.0 Business Case Competition</h3>
+                        <span class="exp-date">March 2024</span>
+                    </div>
+                    <p class="exp-company">Top 5 Finalist</p>
+                </div>
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <h3>UNNES Trading Competition</h3>
+                        <span class="exp-date">October 2023</span>
+                    </div>
+                    <p class="exp-company">Top 3 Finalist</p>
+                </div>
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <h3>SxC Intersummit Business Case Competition</h3>
+                        <span class="exp-date">July 2023</span>
+                    </div>
+                    <p class="exp-company">Top 10 Finalist</p>
+                </div>
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <h3>INFEST Equity Research & Business Case Competition</h3>
+                        <span class="exp-date">June 2023</span>
+                    </div>
+                    <p class="exp-company">Top 5 Finalist</p>
+                </div>
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <h3>IESC Summit Business Case Competition</h3>
+                        <span class="exp-date">May 2023</span>
+                    </div>
+                    <p class="exp-company">Top 5 Finalist</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="organizations">
+            <h2 class="section-title">Organizations</h2>
+            
+            <div class="section-content-wrapper">
+                
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <h3>Member</h3>
+                        <span class="exp-date">2025 - Present</span>
+                    </div>
+                    <p class="exp-company">Generasi Pesona Indonesia</p>
+                    <ul class="exp-details">
+                        <li>Engaged in tourism and cultural promotion activities to strengthen local identity and national destination exposure.</li>
+                        <li>Contributed to community-driven events aimed at empowering local creative industries and enhancing cultural appreciation among youth.</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <h3>Vice Regional Chair</h3>
+                        <span class="exp-date">2024 - 2025</span>
+                    </div>
+                    <p class="exp-company">Muda Mendunia Indonesia (Sulawesi Selatan)</p>
+                    <ul class="exp-details">
+                        <li>Coordinated regional strategic activities and strengthened collaboration between chapters to build a unified and growth-oriented youth network.</li>
+                        <li>Led the Leadership Enhancement Series to develop communication, analytical, and execution skills among young members.</li>
+                        <li>Initiated the Community Impact Network, enabling collaboration between local communities and youth changemakers to drive social innovation projects.</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <h3>Staff</h3>
+                        <span class="exp-date">2022 - 2023</span>
+                    </div>
+                    <p class="exp-company">Society of Renewable Energy UNHAS</p>
+                    <ul class="exp-details">
+                        <li>Assisted in organizing campus awareness programs focused on renewable energy adoption and sustainable environmental practices.</li>
+                        <li>Supported research-based discussions and educational campaigns that encouraged students to understand and participate in clean energy initiatives.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+        
+        <section id="contact">
+            <h2 class="section-title">Get In Touch</h2>
+            
+            <div class="section-content-wrapper">
+                <p class="contact-intro">
+                    I’m driven by the challenge of turning data into clarity, strategy, and real impact. If you're exploring opportunities, open to collaboration, or simply interested in discussing ideas, I’d be glad to connect.
+                </p>
+                
+                <div class="contact-links">
+                    <a href="mailto:afiqatsaladami@gmail.com" class="btn-contact">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="none" d="M0 0h24v24H0z"/>
+                            <path fill="currentColor" d="M22 4H2.01L2 20h20V4zM20 8l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        afiqatsaladami@gmail.com
+                    </a>
+                    
+                    <a href="https://linkedin.com/in/afiqatsaladami" class="btn-contact" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="none" d="M0 0h24v24H0z"/>
+                            <path fill="currentColor" d="M20.447 20.45h-3.554v-5.569c0-1.328-.027-3.037-1.85-3.037-1.85 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.284zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.017H3.555V9h3.564v11.45zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                    
+                    <a href="https://wa.me/6282122224025" class="btn-contact" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path fill="none" d="M0 0h24v24H0z"/>
+                            <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 12c0 1.77.46 3.45 1.26 4.94L2 22l5.25-1.38c1.45.75 3.08 1.18 4.79 1.18h.01c5.46 0 9.9-4.44 9.9-9.9C21.94 6.45 17.5 2 12.04 2zM12.04 20.12h-.01c-1.48 0-2.9-.39-4.14-1.09l-.3-.18-3.07.81.82-3.01-.2-.32a8.2 8.2 0 0 1-1.26-4.41c0-4.52 3.69-8.2 8.2-8.2s8.2 3.68 8.2 8.2c0 4.51-3.69 8.2-8.2 8.2zM17.13 14.4c-.21-.11-1.26-.62-1.45-.69-.2-.07-.34-.11-.49.11-.15.22-.55.69-.67.83s-.25.15-.46.04c-.21-.11-1.1-0.4-2.09-1.29s-1.66-1.55-1.84-1.81c-.18-.26-.02-.4.1-.51.11-.1.25-.26.37-.39.13-.13.17-.22.25-.37.08-.15.04-.28-.02-.39-.07-.11-.49-1.18-.67-1.61-.18-.43-.36-.37-.49-.37-.13 0-.28-.04-.42-.04s-.38.07-.58.22c-.2.15-.76.73-.76 1.77 0 1.04.78 2.05.89 2.19.11.15 1.54 2.34 3.73 3.29.52.23.93.36 1.25.46.42.12.8.1.1.09-.34-.04-1.26-.51-1.44-1-.18-.48-.18-.9-.13-1z"/>
+                        </svg>
+                        +62 821 2222 4025
+                    </a>
+                    
+                    <a href="link_ke_resume.pdf" class="btn-contact" download>
+                        📄 Download Resume
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <a href="#home" id="scroll-to-top" title="Back to Top">▲</a>
+    
+    <script>
+        /* JavaScript (Efek Tampilan) */
+        
+        /* 1. Animasi Mengetik */
+        const rolesToType = [
+            "Data Scientist", "Data Analyst", "Investment Analyst", 
+            "Actuarial Analyst", "Risk Analyst", "Product Actuarial", "Pricing Analyst"
+        ];
+        const typingElement = document.getElementById('typing-role');
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        
+        function type() {
+            if (!typingElement) return;
+            const currentRole = rolesToType[roleIndex];
+            let typeDelay;
+            if (isDeleting) {
+                typingElement.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+                typeDelay = 30;
+            } else {
+                typingElement.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+                typeDelay = 50;
+            }
+            if (!isDeleting && charIndex === currentRole.length) {
+                isDeleting = true;
+                typeDelay = 1000;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % rolesToType.length;
+                typeDelay = 250;
+            }
+            setTimeout(type, typeDelay);
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(type, 250);
+        });
+        
+        /* 2. (V19) Kursor Lingkaran Dihapus */
+
+        /* 3. Efek Latar Belakang Constellation */
+        const canvas = document.getElementById('constellation-bg');
+        const ctx = canvas.getContext('2d');
+        let particlesArray;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let mouse = { x: null, y: null, radius: (canvas.height/110) * (canvas.width/110) }
+        
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+        
+        window.addEventListener('mouseout', () => {
+            mouse.x = undefined;
+            mouse.y = undefined;
+        });
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x; this.y = y; this.directionX = directionX;
+                this.directionY = directionY; this.size = size; this.color = color;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = 'rgba(0, 123, 255, 0.2)';
+                ctx.fill();
+            }
+            update() {
+                if (this.x > canvas.width || this.x < 0) { this.directionX = -this.directionX; }
+                if (this.y > canvas.height || this.y < 0) { this.directionY = -this.directionY; }
+                
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx*dx + dy*dy);
+                if (distance < mouse.radius + this.size) {
+                    if (mouse.x < this.x && this.x < canvas.width - this.size * 10) { this.x += 3; }
+                    if (mouse.x > this.x && this.x > this.size * 10) { this.x -= 3; }
+                    if (mouse.y < this.y && this.y < canvas.height - this.size * 10) { this.y += 3; }
+                    if (mouse.y > this.y && this.y > this.size * 10) { this.y -= 3; }
+                }
+                
+                this.x += this.directionX; this.y += this.directionY;
+                this.draw();
+            }
+        }
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((canvas.width - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((canvas.height - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * 0.4) - 0.2;
+                let directionY = (Math.random() * 0.4) - 0.2;
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, 'rgba(0, 123, 255, 0.2)'));
+            }
+        }
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
+                                 + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    if (distance < (canvas.width/7) * (canvas.height/7)) {
+                        opacityValue = 1 - (distance/20000);
+                        ctx.strokeStyle = 'rgba(0, 123, 255, ' + opacityValue + ')';
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+            connect();
+        }
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            mouse.radius = (canvas.height/110) * (canvas.width/110);
+            init();
+        });
+        init();
+        animate();
+        
+        
+        /* 4. Logika Preloader */
+        const preloader = document.getElementById('preloader');
+        
+        window.addEventListener('load', () => {
+            if (preloader) {
+                // Tampilkan minimal 2 detik
+                setTimeout(() => {
+                    preloader.classList.add('loaded');
+                }, 2000); // Durasi 2 detik
+            }
+        });
+        
+        
+        /* 5. Logika Scroll Spy & Scroll-to-Top (V19) */
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('header nav .nav-links a');
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+
+        function handleScroll() {
+            // Bagian 1: Scroll Spy untuk Navigasi
+            let currentSectionId = 'home';
+            const offset = 150;
+        
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= sectionTop - offset) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+        
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSectionId) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Bagian 2: Tombol Scroll-to-Top
+            if (!scrollToTopBtn) return;
+            
+            // Tampilkan tombol jika sudah scroll melewati section 'home'
+            const homeSection = document.getElementById('home');
+            if (window.scrollY > homeSection.offsetHeight / 2) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        }
+    
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', handleScroll);
+        
+    </script>
+</body>
+</html>
